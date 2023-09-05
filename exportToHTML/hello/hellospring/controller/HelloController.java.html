@@ -1,0 +1,74 @@
+<html>
+<head>
+<title>HelloController.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cf8e6d;}
+.s1 { color: #bcbec4;}
+.s2 { color: #bcbec4;}
+.s3 { color: #6aab73;}
+.s4 { color: #7a7e85;}
+.ln { color: #4b5059; font-weight: normal; font-style: normal; }
+</style>
+</head>
+<body bgcolor="#1e1f22">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+HelloController.java</font>
+</center></td></tr></table>
+<pre><a name="l1"><span class="ln">1    </span></a><span class="s0">package </span><span class="s1">hello</span><span class="s2">.</span><span class="s1">hellospring</span><span class="s2">.</span><span class="s1">controller</span><span class="s2">;</span>
+<a name="l2"><span class="ln">2    </span></a>
+<a name="l3"><span class="ln">3    </span></a><span class="s0">import </span><span class="s1">org</span><span class="s2">.</span><span class="s1">springframework</span><span class="s2">.</span><span class="s1">stereotype</span><span class="s2">.</span><span class="s1">Controller</span><span class="s2">;</span>
+<a name="l4"><span class="ln">4    </span></a><span class="s0">import </span><span class="s1">org</span><span class="s2">.</span><span class="s1">springframework</span><span class="s2">.</span><span class="s1">ui</span><span class="s2">.</span><span class="s1">Model</span><span class="s2">;</span>
+<a name="l5"><span class="ln">5    </span></a><span class="s0">import </span><span class="s1">org</span><span class="s2">.</span><span class="s1">springframework</span><span class="s2">.</span><span class="s1">web</span><span class="s2">.</span><span class="s1">bind</span><span class="s2">.</span><span class="s1">annotation</span><span class="s2">.</span><span class="s1">GetMapping</span><span class="s2">;</span>
+<a name="l6"><span class="ln">6    </span></a><span class="s0">import </span><span class="s1">org</span><span class="s2">.</span><span class="s1">springframework</span><span class="s2">.</span><span class="s1">web</span><span class="s2">.</span><span class="s1">bind</span><span class="s2">.</span><span class="s1">annotation</span><span class="s2">.</span><span class="s1">RequestParam</span><span class="s2">;</span>
+<a name="l7"><span class="ln">7    </span></a><span class="s0">import </span><span class="s1">org</span><span class="s2">.</span><span class="s1">springframework</span><span class="s2">.</span><span class="s1">web</span><span class="s2">.</span><span class="s1">bind</span><span class="s2">.</span><span class="s1">annotation</span><span class="s2">.</span><span class="s1">ResponseBody</span><span class="s2">;</span>
+<a name="l8"><span class="ln">8    </span></a>
+<a name="l9"><span class="ln">9    </span></a><span class="s1">@Controller</span>
+<a name="l10"><span class="ln">10   </span></a><span class="s0">public class </span><span class="s1">HelloController </span><span class="s2">{</span>
+<a name="l11"><span class="ln">11   </span></a>
+<a name="l12"><span class="ln">12   </span></a>    <span class="s1">@GetMapping</span><span class="s2">(</span><span class="s3">&quot;hello&quot;</span><span class="s2">) </span><span class="s4">// localhost:8080/hello로 들어오면</span>
+<a name="l13"><span class="ln">13   </span></a>    <span class="s0">public </span><span class="s1">String hello</span><span class="s2">(</span><span class="s1">Model model</span><span class="s2">) {</span>
+<a name="l14"><span class="ln">14   </span></a>        <span class="s1">model</span><span class="s2">.</span><span class="s1">addAttribute</span><span class="s2">(</span><span class="s3">&quot;data&quot;</span><span class="s2">, </span><span class="s3">&quot;Hello!!&quot;</span><span class="s2">); </span><span class="s4">// model data에 &quot;hello!!&quot; 담아서</span>
+<a name="l15"><span class="ln">15   </span></a>        <span class="s0">return </span><span class="s3">&quot;hello&quot;</span><span class="s2">; </span><span class="s4">// templates/hello.html을 열어라</span>
+<a name="l16"><span class="ln">16   </span></a>    <span class="s2">}</span>
+<a name="l17"><span class="ln">17   </span></a>
+<a name="l18"><span class="ln">18   </span></a>    <span class="s1">@GetMapping</span><span class="s2">(</span><span class="s3">&quot;hello-mvc&quot;</span><span class="s2">)</span>
+<a name="l19"><span class="ln">19   </span></a>    <span class="s4">// @RequestParam(&quot;name&quot;) String name 때문에 localhost:8080/hello-mvc?name= 이런식으로</span>
+<a name="l20"><span class="ln">20   </span></a>    <span class="s0">public </span><span class="s1">String helloMvc</span><span class="s2">(</span><span class="s1">@RequestParam</span><span class="s2">(</span><span class="s3">&quot;name&quot;</span><span class="s2">) </span><span class="s1">String name</span><span class="s2">, </span><span class="s1">Model model</span><span class="s2">) {</span>
+<a name="l21"><span class="ln">21   </span></a>        <span class="s1">model</span><span class="s2">.</span><span class="s1">addAttribute</span><span class="s2">(</span><span class="s3">&quot;name&quot;</span><span class="s2">, </span><span class="s1">name</span><span class="s2">);</span>
+<a name="l22"><span class="ln">22   </span></a>        <span class="s0">return </span><span class="s3">&quot;hello-template&quot;</span><span class="s2">;</span>
+<a name="l23"><span class="ln">23   </span></a>    <span class="s2">}</span>
+<a name="l24"><span class="ln">24   </span></a>
+<a name="l25"><span class="ln">25   </span></a>
+<a name="l26"><span class="ln">26   </span></a>    <span class="s4">// API 방식, 얜 veiw 같은거 없이 문자 그대로 보냄, 위에 템플릿 엔진을 사용한 방식들은 화면을 렌더링해서 보내줌</span>
+<a name="l27"><span class="ln">27   </span></a>    <span class="s1">@GetMapping</span><span class="s2">(</span><span class="s3">&quot;hello-string&quot;</span><span class="s2">)</span>
+<a name="l28"><span class="ln">28   </span></a>    <span class="s1">@ResponseBody </span><span class="s4">// http res body에 return을 직접 넣겠다.</span>
+<a name="l29"><span class="ln">29   </span></a>    <span class="s0">public </span><span class="s1">String helloString</span><span class="s2">(</span><span class="s1">@RequestParam</span><span class="s2">(</span><span class="s3">&quot;name&quot;</span><span class="s2">) </span><span class="s1">String name</span><span class="s2">) {</span>
+<a name="l30"><span class="ln">30   </span></a>        <span class="s0">return </span><span class="s3">&quot;hello &quot; </span><span class="s2">+ </span><span class="s1">name</span><span class="s2">;</span>
+<a name="l31"><span class="ln">31   </span></a>    <span class="s2">}</span>
+<a name="l32"><span class="ln">32   </span></a>
+<a name="l33"><span class="ln">33   </span></a>    <span class="s4">// API방식 json으로 반환</span>
+<a name="l34"><span class="ln">34   </span></a>    <span class="s1">@GetMapping</span><span class="s2">(</span><span class="s3">&quot;hello-api&quot;</span><span class="s2">)</span>
+<a name="l35"><span class="ln">35   </span></a>    <span class="s1">@ResponseBody</span>
+<a name="l36"><span class="ln">36   </span></a>    <span class="s0">public </span><span class="s1">Hello helloApi</span><span class="s2">(</span><span class="s1">@RequestParam</span><span class="s2">(</span><span class="s3">&quot;name&quot;</span><span class="s2">) </span><span class="s1">String name</span><span class="s2">) {</span>
+<a name="l37"><span class="ln">37   </span></a>        <span class="s1">Hello hello </span><span class="s2">= </span><span class="s0">new </span><span class="s1">Hello</span><span class="s2">();</span>
+<a name="l38"><span class="ln">38   </span></a>        <span class="s1">hello</span><span class="s2">.</span><span class="s1">setName</span><span class="s2">(</span><span class="s1">name</span><span class="s2">);</span>
+<a name="l39"><span class="ln">39   </span></a>        <span class="s0">return </span><span class="s1">hello</span><span class="s2">;</span>
+<a name="l40"><span class="ln">40   </span></a>    <span class="s2">}</span>
+<a name="l41"><span class="ln">41   </span></a>
+<a name="l42"><span class="ln">42   </span></a>    <span class="s0">static class </span><span class="s1">Hello </span><span class="s2">{</span>
+<a name="l43"><span class="ln">43   </span></a>        <span class="s0">private  </span><span class="s1">String name</span><span class="s2">;</span>
+<a name="l44"><span class="ln">44   </span></a>
+<a name="l45"><span class="ln">45   </span></a>        <span class="s0">public </span><span class="s1">String getName</span><span class="s2">() {</span>
+<a name="l46"><span class="ln">46   </span></a>            <span class="s0">return </span><span class="s1">name</span><span class="s2">;</span>
+<a name="l47"><span class="ln">47   </span></a>        <span class="s2">}</span>
+<a name="l48"><span class="ln">48   </span></a>        <span class="s0">public void </span><span class="s1">setName</span><span class="s2">(</span><span class="s1">String name</span><span class="s2">) {</span>
+<a name="l49"><span class="ln">49   </span></a>            <span class="s0">this</span><span class="s2">.</span><span class="s1">name </span><span class="s2">= </span><span class="s1">name</span><span class="s2">;</span>
+<a name="l50"><span class="ln">50   </span></a>        <span class="s2">}</span>
+<a name="l51"><span class="ln">51   </span></a>    <span class="s2">}</span>
+<a name="l52"><span class="ln">52   </span></a><span class="s2">}</span>
+<a name="l53"><span class="ln">53   </span></a></pre>
+</body>
+</html>
